@@ -4,3 +4,6 @@ names = [
     "Sakura",
     "Kakashi",
     ]
+
+
+work_dir = "./"
