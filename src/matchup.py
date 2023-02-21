@@ -4,10 +4,14 @@
 # @Author  : Michael
 # @File    : matchup.py.py
 # @Project: HeromatcH
-
-
+import logging
 from random import choice
+
+from peewee import DoesNotExist
+
 import config as cfg
+from src.bdd.Personnage_BDD import Personnage
+from src.bdd.Vote_BDD import Vote
 
 
 def do_match():
@@ -42,3 +46,26 @@ def do_match():
             else:
                 print("Merci de taper uniquement 1 ou 2, espèce de gros naze.")
                 user_okay = True
+
+
+def set_vote(id_gagnant, id_perdant):
+    """set_vote: prends en compte un vote
+
+    :rtype: bool
+    :return: True si le vote a bien ete pris en compte false sinon
+    :param int id_gagnant: personnage gagnant
+    :param int id_perdant: personnage vaincue
+    """
+    try:
+        gagnant = Personnage.get_by_id(id_gagnant)
+        perdant = Personnage.get_by_id(id_perdant)
+        Vote(gagnant=gagnant, perdant=perdant).save()
+        perdant.total_match += 1
+        perdant.save()
+        gagnant.total_point += 1
+        gagnant.total_match += 1
+        gagnant.save()
+        return True
+    except DoesNotExist as e:
+        logging.error(f"Les personnages demandés existent pas - {e}")
+        return False

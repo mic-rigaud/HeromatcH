@@ -6,6 +6,8 @@
 # @Project: HeromatcH
 
 from invoke import task
+
+from src.bdd.Vote_BDD import Vote
 import src.bdd.api_bdd as bdd
 from src.bdd.Personnage_BDD import Personnage
 import config as cfg
@@ -24,7 +26,7 @@ def config_bdd(c):
     """Permet l'installation de la BDD automatise."""
     try:
         var = bdd.db.connect
-        bdd.db.create_tables([Personnage])
+        bdd.db.create_tables([Personnage, Vote])
         logging.info("Creation de la BDD")
         import_personnage()
     except Exception:
