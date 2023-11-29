@@ -4,21 +4,23 @@
 # @Author  : Michael
 # @File    : task.py.py
 # @Project: HeromatcH
+import json
+import logging
+import os
 
 from invoke import task
 
-from src.bdd.Vote_BDD import Vote
 import src.bdd.api_bdd as bdd
-from src.bdd.Personnage_BDD import Personnage
-import config as cfg
-import logging
+from src.bdd.Hero_BDD import Hero
+from src.bdd.Joueur_BDD import Joueur
+from src.bdd.Vote_BDD import Vote
 
 
-logging.basicConfig(
-        filename="heromatch.log",
-        level=logging.INFO,
-        format="%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - %(message)s",
-        )
+@task
+def install(c):
+    """Install blueberry."""
+    config_bdd(c)
+    c.run("touch log/HeromatcH.log")
 
 
 @task
@@ -26,15 +28,21 @@ def config_bdd(c):
     """Permet l'installation de la BDD automatise."""
     try:
         var = bdd.db.connect
-        bdd.db.create_tables([Personnage, Vote])
+        bdd.db.create_tables([Hero, Vote, Joueur])
         logging.info("Creation de la BDD")
         import_personnage()
-    except Exception:
+    except Exception as e:
         print("=== La base SQL existe déjà ===")
+        print(e)
 
 
 def import_personnage():
-    for perso in cfg.names:
-        if Personnage.select().where(Personnage.nom == perso).count() == 0:
-            Personnage(nom=perso).save()
-            logging.info(f"{perso} ajouté dans la Bdd")
+    lst_import = os.listdir("Heroes")
+    for hero_file in sorted(lst_import):
+        if ".json" in hero_file:
+            with open(f"Heroes/{hero_file}") as json_data:
+                hero_data = json.load(json_data)
+                if Hero.select().where(Hero.nom == hero_data["nom_court"]).count() == 0:
+                    Hero(nom=hero_data["nom_court"], manga=hero_data["manga"], nom_long=hero_data["nom_long"]).save()
+                    print(f"{hero_data['nom_court']} ajouté dans la Bdd")
+                json_data.close()

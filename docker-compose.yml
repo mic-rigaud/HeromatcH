@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  heromatchtest:
+    image: registry.gitlab.com/mic-rigaud/major_home:latest
+    container_name: ${CONTAINER_NAME}
+    volumes:
+      - heromatch-data:/app/data
+      - heromatch-log:/app/log
+    environment:
+      - CONTAINER_NAME=${CONTAINER_NAME}
+      - HEROMATCH_BOT_TOKEN=${HEROMATCH_BOT_TOKEN}
+      - HEROMATCH_ADMINS=${HEROMATCH_ADMINS}
+
+
+volumes:
+  heromatch-data:
+  heromatch-log:

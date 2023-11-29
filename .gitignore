@@ -1,3 +1,10 @@
 .idea/
-ressources/bdd.db
+data/bdd.db
 heromatch.log
+*.log
+config.py
+sonar-project.properties
+.scannerwork/
+.env
+data/match_temp.png
+data/persistence-data

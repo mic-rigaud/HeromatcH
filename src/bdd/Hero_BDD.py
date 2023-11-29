@@ -11,11 +11,11 @@ from peewee import CharField, IntegerField
 from src.bdd.api_bdd import BaseModel
 
 
-class Personnage(BaseModel):
+class Hero(BaseModel):
     """Objet definissant les Joueurs dans la BDD."""
 
     nom = CharField()
+    nom_long = CharField()
+    manga = CharField()
     total_point = IntegerField(default=0)
     total_match = IntegerField(default=0)
-
-

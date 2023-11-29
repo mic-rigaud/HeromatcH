@@ -6,17 +6,17 @@
 # @Project: HeromatcH
 
 
-from peewee import CharField, ForeignKeyField, IntegerField
+from peewee import ForeignKeyField
 
-from src.bdd.Personnage_BDD import Personnage
+from src.bdd.Hero_BDD import Hero
 from src.bdd.api_bdd import BaseModel
 
 
 class Vote(BaseModel):
     """Objet definissant les Votes dans la BDD."""
 
-    gagnant = ForeignKeyField(Personnage, backref="vote")
-    perdant = ForeignKeyField(Personnage, backref="vote")
+    gagnant = ForeignKeyField(Hero, backref="vote")
+    perdant = ForeignKeyField(Hero, backref="vote")
 
 
 
