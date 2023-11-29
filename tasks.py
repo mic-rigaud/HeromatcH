@@ -46,3 +46,9 @@ def import_personnage():
                     Hero(nom=hero_data["nom_court"], manga=hero_data["manga"], nom_long=hero_data["nom_long"]).save()
                     print(f"{hero_data['nom_court']} ajouté dans la Bdd")
                 json_data.close()
+
+
+@task
+def start_local(c):
+    """Demarre en local."""
+    c.run("python3 main.py", pty=True, warn=True)

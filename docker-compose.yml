@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   heromatchtest:
-    image: registry.gitlab.com/mic-rigaud/major_home:latest
+    image: ghcr.io/mic-rigaud/heromatch:release
     container_name: ${CONTAINER_NAME}
     volumes:
       - heromatch-data:/app/data
