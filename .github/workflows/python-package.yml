@@ -37,6 +37,8 @@ jobs:
           key: venv-${{ hashFiles('poetry.lock') }}
       - name: Install the project dependencies
         run: poetry install
+      - name: Create config.py
+        run: cp config-example.py config.py
       - name: Run the automated tests (for example)
         run: poetry run pytest -v
       - name: Install dependencies
