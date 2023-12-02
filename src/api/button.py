@@ -9,9 +9,7 @@
 import json
 import logging
 
-from telegram import Update
 from telegram.constants import MessageLimit
-from telegram.ext import CallbackContext
 
 
 def build_menu(buttons, n_cols, header_buttons=None, footer_buttons=None):

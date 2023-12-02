@@ -9,7 +9,6 @@ from telegram.ext import (CommandHandler, ContextTypes, ConversationHandler, Mes
 from src.api.button import bot_send_message
 from src.bdd.Joueur_BDD import Joueur
 
-
 ETAPE1, ETAPE2 = range(2)
 
 
@@ -20,7 +19,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     Joueur.chat_id == update.message.chat_id))
     if not record.exists():
         reponse = (
-            "Bonjour!\nBienvenue sur HeromatcH l'application pour voter pour le plus grand hero de tous les temps. Pour jouer, il faut s'inscrire, et pour cela j'ai juste besoin de ton nom : ")
+            "Bonjour!\nBienvenue sur HeromatcH l'application pour voter pour le plus grand hero de tous les temps. "
+            "Pour jouer, il faut s'inscrire, et pour cela j'ai juste besoin de ton nom : ")
         await bot_send_message(context=context, update=update, text=reponse)
         return ETAPE1
     else:
@@ -35,7 +35,8 @@ async def etape1(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.message.from_user.id
     Joueur.create(nom=nom, chat_id=chat_id, user_id=user_id).save()
     logging.info(f"Ajout de l'utilisateur {nom}")
-    reponse = f"Bienvenue à toi {nom}.\nMaintenant à toi de jouer! Si tu as besoin d'en savoir plus sur mes fonctionnalités fais /help "
+    reponse = f"Bienvenue à toi {nom}.\nMaintenant à toi de jouer! Si tu as besoin d'en savoir plus sur mes " \
+              f"fonctionnalités fais /help "
 
     await bot_send_message(context=context, update=update, text=reponse)
     return ConversationHandler.END

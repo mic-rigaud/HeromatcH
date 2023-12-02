@@ -10,6 +10,8 @@ peewee = "^3.15.4"
 invoke = "^2.0.0"
 python-telegram-bot = {extras = ["job-queue"], version = "^20.4"}
 Pillow = "^10.1.0"
+pytest = "^7.4.3"
+flake8 = "^6.1.0"
 
 [tool.poetry.dev-dependencies]
 
