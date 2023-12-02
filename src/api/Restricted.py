@@ -44,7 +44,7 @@ def restricted_admin(func):
     @wraps(func)
     async def wrapped(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
-        if user_id not in cfg.admin_chatid:
+        if str(user_id) not in cfg.admin_chatid:
             logging.info(f"Access non autorisé pour {user_id} sur une fonction d'admin.")
             reponse = "C'est une fonction d'admin. C'est pas pour toi, désolé."
             await bot_send_message(context=context, update=update, text=reponse)

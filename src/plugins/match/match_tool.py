@@ -1,3 +1,5 @@
+import logging
+
 from PIL import Image
 from peewee import fn
 
@@ -14,10 +16,14 @@ def get_concat_h(im1, im2):
 
 
 def get_image_match(nom1, nom2):
-    im1 = Image.open(f"Heroes/{nom1}.png")
-    im2 = Image.open(f"Heroes/{nom2}.png")
-    get_concat_h(im1, im2).save("data/match_temp.png")
-    return "data/match_temp.png"
+    try:
+        im1 = Image.open(f"Heroes/{nom1}.png")
+        im2 = Image.open(f"Heroes/{nom2}.png")
+        get_concat_h(im1, im2).save("data/match_temp.png")
+        return "data/match_temp.png"
+    except FileNotFoundError as e:
+        logging.error(f"Fichier introuvable : {e}")
+        return "error"
 
 
 def get_hero_match():
