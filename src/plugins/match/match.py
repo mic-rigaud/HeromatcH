@@ -29,8 +29,11 @@ async def match(update: Update, context: CallbackContext):
     """Lance le match des héros"""
     heroes = get_hero_match()
     image_match = get_image_match(heroes[1]["name"], heroes[2]["name"])
-    await bot_send_image(update, context, image=image_match)
-    await bot_send_message(update, context, text="Qui gagne ?", reply_markup=creer_bouton(heroes))
+    if image_match == "error":
+        await bot_send_message(update, context, text="Erreur lors de la génération de l'image")
+    else:
+        await bot_send_image(update, context, image=image_match)
+        await bot_send_message(update, context, text="Qui gagne ?", reply_markup=creer_bouton(heroes))
 
 
 def add(application):
