@@ -8,7 +8,6 @@
 import json
 import os
 
-
 # Bot token avec le token de dev
 bot_token = os.environ['HEROMATCH_BOT_TOKEN']
 

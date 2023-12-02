@@ -17,6 +17,3 @@ class Vote(BaseModel):
 
     gagnant = ForeignKeyField(Hero, backref="vote")
     perdant = ForeignKeyField(Hero, backref="vote")
-
-
-

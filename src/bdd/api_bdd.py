@@ -8,11 +8,8 @@
 from peewee import Model
 from playhouse.sqlite_ext import SqliteDatabase
 
-import config as cfg
-
-
-
 db = SqliteDatabase("./data/bdd.db")
+
 
 class BaseModel(Model):
     """Classe BaseModel."""

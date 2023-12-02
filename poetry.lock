@@ -69,6 +69,19 @@ python-versions = ">=3.7"
 test = ["pytest (>=6)"]
 
 [[package]]
+name = "flake8"
+version = "6.1.0"
+description = "the modular source code checker: pep8 pyflakes and co"
+category = "main"
+optional = false
+python-versions = ">=3.8.1"
+
+[package.dependencies]
+mccabe = ">=0.7.0,<0.8.0"
+pycodestyle = ">=2.11.0,<2.12.0"
+pyflakes = ">=3.1.0,<3.2.0"
+
+[[package]]
 name = "h11"
 version = "0.14.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -140,6 +153,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "mccabe"
+version = "0.7.0"
+description = "McCabe checker, plugin for flake8"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "packaging"
 version = "23.2"
 description = "Core utilities for Python packages"
@@ -178,6 +199,22 @@ python-versions = ">=3.8"
 [package.extras]
 dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
+
+[[package]]
+name = "pycodestyle"
+version = "2.11.1"
+description = "Python style guide checker"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
+name = "pyflakes"
+version = "3.1.0"
+description = "passive checker of Python programs"
+category = "main"
+optional = false
+python-versions = ">=3.8"
 
 [[package]]
 name = "pytest"
@@ -279,7 +316,7 @@ devenv = ["black", "check-manifest", "flake8", "pyroma", "pytest-cov", "pytest-m
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "2b21b80ae376e64c5fcc253c15092d93eeb3c8aff4ec8bb0ba32c8dc148e2487"
+content-hash = "979ab0e2e5a414c7b381dfd89cb99e0e2636c0397a1d031c7806c5ecfbee2aa9"
 
 [metadata.files]
 anyio = []
@@ -287,16 +324,20 @@ apscheduler = []
 certifi = []
 colorama = []
 exceptiongroup = []
+flake8 = []
 h11 = []
 httpcore = []
 httpx = []
 idna = []
 iniconfig = []
 invoke = []
+mccabe = []
 packaging = []
 peewee = []
 pillow = []
 pluggy = []
+pycodestyle = []
+pyflakes = []
 pytest = []
 python-telegram-bot = []
 pytz = []
