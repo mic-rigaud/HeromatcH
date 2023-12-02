@@ -55,10 +55,10 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE):
         nom = mod.__name__.replace("src.plugins.", "").split(".")[0]
         if doc and (
                 (
-                        update.message.from_user.id not in cfg.admin_chatid
+                        str(update.message.from_user.id) not in cfg.admin_chatid
                         and nom not in ["start"] and "admin_" not in nom
                 )
-                or update.message.from_user.id in cfg.admin_chatid):
+                or str(update.message.from_user.id) in cfg.admin_chatid):
             if demande == "":
                 reponse += f"/{nom} : {doc}" + "\n"
             elif demande in nom:
